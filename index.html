@@ -1,4 +1,79 @@
-// ... existing code ...
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>安全技术研究院 - 导航站</title>
+  <style>
+    body {
+      font-family: "微软雅黑", Arial, sans-serif;
+      background: #f6f8fa;
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    header {
+      background: #1abc9c;
+      color: #fff;
+      padding: 32px 0 16px 0;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+      letter-spacing: 2px;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 24px 0;
+      gap: 16px;
+    }
+    .nav-tag {
+      background: linear-gradient(90deg, #27ae60 60%, #2980b9 100%);
+      color: #fff;
+      padding: 10px 28px;
+      border-radius: 24px;
+      font-size: 1.1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(39,174,96,0.08);
+      border: none;
+      outline: none;
+    }
+    .nav-tag.active, .nav-tag:hover {
+      background: linear-gradient(90deg, #f39c12 60%, #e67e22 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(243,156,18,0.12);
+    }
+    .section {
+      display: none;
+      max-width: 700px;
+      margin: 0 auto 32px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(39,174,96,0.06);
+      padding: 32px 24px;
+      font-size: 1.08em;
+      line-height: 1.8;
+    }
+    .section.active {
+      display: block;
+    }
+    @media (max-width: 600px) {
+      .section { padding: 18px 8px; }
+      .nav-tag { padding: 8px 12px; font-size: 1em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>安全技术研究院导航</h1>
+    <div style="font-size:1.1em;opacity:0.8;">专注于安全技术与知识传播</div>
+  </header>
   <nav>
     <button class="nav-tag active" data-section="accident">事故警示</button>
     <button class="nav-tag" data-section="standard">标准规范</button>
@@ -6,29 +81,58 @@
     <button class="nav-tag" data-section="training">安全培训</button>
     <button class="nav-tag" data-section="news">安全资讯</button>
   </nav>
-  <!-- 百度搜索框 -->
-  <div style="display:flex;justify-content:center;margin-bottom:24px;">
-    <form action="https://www.baidu.com/s" method="get" target="_blank" style="display:flex;gap:0;">
-      <input type="text" name="wd" placeholder="百度搜索…" style="padding:8px 16px;font-size:1em;border:1px solid #27ae60;border-radius:24px 0 0 24px;outline:none;width:220px;">
-      <button type="submit" style="background:#27ae60;color:#fff;border:none;padding:8px 20px;border-radius:0 24px 24px 0;font-size:1em;cursor:pointer;">搜索</button>
-    </form>
+  <div id="accident" class="section active">
+    <h2>事故警示</h2>
+    <ul>
+      <li><a href="#" target="_blank">最新事故案例分析</a></li>
+      <li><a href="#" target="_blank">典型事故警示视频</a></li>
+      <li><a href="#" target="_blank">事故原因深度剖析</a></li>
+    </ul>
   </div>
-// ... existing code ...
+  <div id="standard" class="section">
+    <h2>标准规范</h2>
+    <ul>
+      <li><a href="#" target="_blank">国家安全生产标准</a></li>
+      <li><a href="#" target="_blank">行业规范汇总</a></li>
+      <li><a href="#" target="_blank">最新政策法规</a></li>
+    </ul>
+  </div>
+  <div id="expert" class="section">
+    <h2>专家讲堂</h2>
+    <ul>
+      <li><a href="#" target="_blank">专家视频讲座</a></li>
+      <li><a href="#" target="_blank">安全技术问答</a></li>
+      <li><a href="#" target="_blank">专家观点分享</a></li>
+    </ul>
+  </div>
+  <div id="training" class="section">
+    <h2>安全培训</h2>
+    <ul>
+      <li><a href="#" target="_blank">在线培训课程</a></li>
+      <li><a href="#" target="_blank">培训资料下载</a></li>
+      <li><a href="#" target="_blank">考试与认证</a></li>
+    </ul>
+  </div>
+  <div id="news" class="section">
+    <h2>安全资讯</h2>
+    <ul>
+      <li><a href="#" target="_blank">最新安全新闻</a></li>
+      <li><a href="#" target="_blank">行业动态</a></li>
+      <li><a href="#" target="_blank">前沿技术资讯</a></li>
+    </ul>
+  </div>
   <script>
-// ... existing code ...
+    // 标签切换功能
+    const tags = document.querySelectorAll('.nav-tag');
+    const sections = document.querySelectorAll('.section');
+    tags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        tags.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        tag.classList.add('active');
+        document.getElementById(tag.dataset.section).classList.add('active');
+      });
+    });
   </script>
-  <!-- 二维码区域 -->
-  <footer style="background:#eafaf1;padding:32px 0 24px 0;text-align:center;margin-top:32px;">
-    <div style="display:flex;justify-content:center;gap:48px;flex-wrap:wrap;align-items:center;">
-      <div>
-        <div style="font-weight:600;font-size:1.08em;margin-bottom:8px;">公众号二维码</div>
-        <img src="your_wechat_qrcode.png" alt="公众号二维码" style="width:120px;height:120px;border-radius:12px;border:4px solid #27ae60;background:#fff;">
-      </div>
-      <div>
-        <div style="font-weight:600;font-size:1.08em;margin-bottom:8px;">知识星球二维码</div>
-        <img src="your_zhishixingqiu_qrcode.png" alt="知识星球二维码" style="width:120px;height:120px;border-radius:12px;border:4px solid #2980b9;background:#fff;">
-      </div>
-    </div>
-    <div style="margin-top:18px;color:#888;font-size:0.98em;">© 2024 安全技术研究院</div>
-  </footer>
-// ... existing code ...
+</body>
+</html>
